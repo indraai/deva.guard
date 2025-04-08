@@ -27,7 +27,7 @@
   },
   "homepage": "https://deva.space/devas/guard",
   "dependencies": {
-    "@indra.ai/deva": "^1.5.22"
+    "@indra.ai/deva": "^1.5.23"
   },
   "data": {
     "agent": {
