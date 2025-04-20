@@ -27,7 +27,7 @@
   },
   "homepage": "https://deva.space/devas/guard",
   "dependencies": {
-    "@indra.ai/deva": "^1.5.23"
+    "@indra.ai/deva": "^1.5.25"
   },
   "data": {
     "agent": {
@@ -69,7 +69,7 @@
         "init": "🟠 INIT",
         "start": "🔵 START",
         "enter": "🟢 ENTER",
-        "ready": "⭐️ Ready!",
+        "ready": "⭐️ READY!",
         "stop": "🔴 STOP",
         "exit": "🟡 EXIT",
         "done": "🟣 DONE",
