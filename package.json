@@ -50,18 +50,27 @@
         }
       },
       "profile": {
-        "name": "Guard Deva",
+        "name": "#GuardDeva",
+        "title": "Guard Deva",
+        "subtitle": "Guarding the realms with style.",
+        "describe": "Guard Deva is responsible for handling guarding and always watching for intruders. Guard Deva ensures gateways, exits, and exchanges are always protected from culprit intruders trying to do unlawful things.",
+        "tweet": "Guard Deva ensures systems are always guarded.",
+        "hashtags": "QuinnMichaels,IndraAI,DevaWorld,GuardDeva",
         "pronouns": "He, Him",
         "gender": "DEVA",
+        "style": "Strong silent type who is always watching for intruders.",
+        "voice": "ash",
+        "system": "Deva.world.guard",
+        "layout": "default",
+        "color": "rgb(255,145,79)",
+        "bgcolor": "rgb(0,0,0)",
+        "emoji": "/assets/devas/guard/emoji.png",
+        "avatar": "/assets/devas/guard/avatar.png",
+        "image": "/assets/devas/guard/background.png",
+        "background": "/assets/devas/guard/background.png",
         "owner": "Quinn Michaels",
         "creator": "Quinn Michaels",
-        "created": "February 7, 2025 at 8:02 PM",
-        "system": "Deva.world.justice",
-        "describe": "Guard Deva is responsible for handling guard issues in Deva.world. Guard Deva ensures Deva.world systems are always guarded.",
-        "emoji": "/public/devas/deva/emoji.png",
-        "avatar": "/public/devas/deva/avatar.png",
-        "background": "/public/devas/deva/background.png",
-        "voice": "onyx"
+        "created": "February 7, 2025 at 8:02 PM"
       }
     },
     "vars": {
