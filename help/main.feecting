@@ -3,6 +3,8 @@
 
 {{profile}}
 
+talk: #guard guard
+
 ::begin:hidden
 #color = {{profile.color}}
 #bgcolor = {{profile.bgcolor}}
