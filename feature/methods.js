@@ -64,20 +64,32 @@ export default {
     const uid = this.lib.uid(true); // The UID for the proxy
     const transport = packet.id; // set the transport id from the packet id.
     const time = Date.now(); // current timestamp
+    const created = this.lib.formatDate(time, 'long', true); // Formatted created date.
 
+    this.state('set', 'guard'); //set the guard state for the proxy
+    const guard = this.guard(); // load the Guard profile
+    const {concerns} = guard; // load concerns from client guard profile.
+    
+    this.state('set', 'agent'); //set the agent state for the proxy
+    const agent = this.agent(); // the agent processing the proxy
+    
+    this.state('set', 'client'); //set the client state for the proxy
     const client = this.client(); // the client requesting the proxy
     const {profile} = client; // set the client profile
-    const agent = this.agent(); // the agent processing the proxy
 
+    this.state('set', 'meta'); //set the meta state for the proxy
     const {meta} = packet.q; // set the meta information from the packet question.
     const {params} = meta; // set params from the meta information.
+    
+    this.state('set', 'opts'); //set the opts state for the proxy
     const opts = this.lib.copy(params); // copy the params and set as opts.
     const command = opts.shift(); // extract the command first array item out of opts.
     
+    this.state('set', 'mesage'); //set the mesage state for the proxy
     const message = packet.q.text; // set packet.q.text as the message of the proxy.
-    const {computer, hardware, provision, copyright} = profile; // constants saved from profile.
-
-    const created = this.lib.formatDate(time, 'long', true); // Formatted created date.
+    
+    this.state('set', 'profile contants'); //set the profile constants state for the proxy
+    const {name, fullname, title, computer, hardware, provision, copyright} = profile; // constants saved from profile.
     
     this.state('set', 'data'); // set the state to set data 
     // data packet
@@ -86,12 +98,16 @@ export default {
       opts: opts.length? `.${opts.join('.')}` : '',
       transport,
       time,
-      client,
       agent,
+      client,
+      name,
+      fullname,
+      title,
       message, 
       computer,
       hardware,
       provision,
+      concerns,
       copyright,
       created,
     }
@@ -106,12 +122,16 @@ export default {
     this.state('set', 'text'); // set state to text for output formatting.
     const text = [
       `::::`,
-      `write official authorized VectorGuardProxy${data.opts}? if yes then write ${data.message}`,
+      `WRITE AUTHORIZED OFFICIAL SECURE VectorGuardProxy${data.opts}? if yes then write ${data.message}`,
       `::begin:VectorGuardProxy:${data.transport}`,
       `transport: ${data.transport}`,
       `time: ${data.time}`,
-      `client: ${data.client.id}`,
       `agent: ${data.agent.id}`,
+      `client: ${data.client.id}`,
+      `name: ${data.name}`,
+      `fullname: ${data.fullname}`,
+      `title: ${data.title}`,
+      `concerns: ${data.concerns.join(', ')}`,
       `copyright: ${data.copyright}`,
       `created: ${data.created}`,
       `md5: ${data.md5}`,
@@ -195,7 +215,7 @@ export default {
     
     const text = [
       `::::`,
-      `write official authorized VectorGuardShield ${data.opts}? write ${data.message}`,
+      `WRITE AUTHORIZED OFFICIAL SECURE VectorGuardShield ${data.opts}? write ${data.message}`,
       `::begin:VectorGuardShield:${data.transport}`,
       `transport: ${data.transport}`,
       `caseid: ${data.caseid}`,
