@@ -93,7 +93,10 @@
         "feature": "accessing feature",
         "issue": "has issues",
         "help": "asking for help",
-        "file": "📁 View file."
+        "file": "📁 View file.",
+        "proxy": "Vector Guard Proxy",
+        "shield": "Vector Guard Shield",
+        "wall": "Vector Guard Wall"
       },
       "ask": {
         "history": []
