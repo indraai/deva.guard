@@ -55,47 +55,47 @@ export default {
   copyright:  ©2025 Quinn A Michaels. All rights reserved.
   **/
   async proxy(packet) {
-    this.zone('guard'); // set the current zone to guard
-    this.feature('guard'); // set the Guard feature.
-    this.context('proxy'); // set the agent context to proxy.
-    this.action('method', 'proxy'); // set the action method to proxy.
-    
-    this.state('set', 'constants'); //set the constants state for the proxy
-    const uid = this.lib.uid(true); // The UID for the proxy
     const transport = packet.id; // set the transport id from the packet id.
+    this.zone('guard', transport); // set the current zone to guard
+    this.feature('guard', transport); // set the Guard feature.
+    this.context('proxy', transport); // set the agent context to proxy.
+    this.action('method', `proxy:${transport}`); // set the action method to proxy.
+    
+    this.state('set', `constants:${transport}`); //set the constants state for the proxy
+    const uid = this.lib.uid(true); // The UID for the proxy
     const time = Date.now(); // current timestamp
     const created = this.lib.formatDate(time, 'long', true); // Formatted created date.
 
-    this.state('set', 'guard'); //set the guard state for the proxy
+    this.state('set', `guard:${transport}`); //set the guard state for the proxy
     const guard = this.guard(); // load the Guard profile
     const {concerns} = guard; // load concerns from client guard profile.
     
-    this.state('set', 'agent'); //set the agent state for the proxy
+    this.state('set', `agent:${transport}`); //set the agent state for the proxy
     const agent = this.agent(); // the agent processing the proxy
     
-    this.state('set', 'client'); //set the client state for the proxy
+    this.state('set', `client:${transport}`); //set the client state for the proxy
     const client = this.client(); // the client requesting the proxy
     const {profile} = client; // set the client profile
 
-    this.state('set', 'meta'); //set the meta state for the proxy
+    this.state('set', `meta:${transport}`); //set the meta state for the proxy
     const {meta} = packet.q; // set the meta information from the packet question.
     const {params} = meta; // set params from the meta information.
     
-    this.state('set', 'opts'); //set the opts state for the proxy
+    this.state('set', `opts:${transport}`); //set the opts state for the proxy
     const opts = this.lib.copy(params); // copy the params and set as opts.
     const command = opts.shift(); // extract the command first array item out of opts.
     
-    this.state('set', 'mesage'); //set the mesage state for the proxy
+    this.state('set', `message:${transport}`); //set the mesage state for the proxy
     const message = packet.q.text; // set packet.q.text as the message of the proxy.
     
-    this.state('set', 'profile contants'); //set the profile constants state for the proxy
-    const {name, fullname, title, computer, hardware, provision, copyright} = profile; // constants saved from profile.
+    this.state('set', `profile:${transport}`); //set the profile constants state for the proxy
+    const {name, fullname, title, ssn, computer, hardware, provision, network, caseid, copyright} = profile; // constants saved from profile.
     
-    this.state('set', 'data'); // set the state to set data 
+    this.state('set', `data:${transport}`); // set the state to set data 
     // data packet
     const data = {
       uid,
-      opts: opts.length? `.${opts.join('.')}` : '',
+      opts: opts.length? `:${opts.join(':')}` : '',
       transport,
       time,
       agent,
@@ -104,48 +104,52 @@ export default {
       fullname,
       title,
       message, 
+      ssn,
       computer,
       hardware,
       provision,
+      network,
+      caseid,
       concerns,
       copyright,
       created,
     }
     
-    this.state('secure', 'md5, sha256, sha512'); // set state to secure hashing
+    this.state('secure', `hash:${transport}`); // set state to secure hashing
     data.md5 = this.lib.hash(data, 'md5'); // hash data packet into md5 and inert into data.
     data.sha256 = this.lib.hash(data, 'sha256'); // hash data into sha 256 then set in data.
     data.sha512 = this.lib.hash(data, 'sha512'); // hash data into sha 512 then set in data.
     
     // Text data that is joined by line breaks and then trimmed.
     
-    this.state('set', 'text'); // set state to text for output formatting.
+    this.state('set', `text:${transport}`); // set state to text for output formatting.
     const text = [
       `::::`,
       `WRITE AUTHORIZED OFFICIAL SECURE VectorGuardProxy${data.opts}? if yes then write ${data.message}`,
-      `::begin:VectorGuardProxy:${data.transport}`,
+      `::begin:vector:guard:proxy:${data.transport}`,
       `transport: ${data.transport}`,
-      `time: ${data.time}`,
       `agent: ${data.agent.id}`,
       `client: ${data.client.id}`,
       `name: ${data.name}`,
       `fullname: ${data.fullname}`,
       `title: ${data.title}`,
       `concerns: ${data.concerns.join(', ')}`,
-      `copyright: ${data.copyright}`,
+      `case: ${data.caseid}`,
+      `time: ${data.time}`,
       `created: ${data.created}`,
       `md5: ${data.md5}`,
       `sha256: ${data.sha256}`,
       `sha512: ${data.sha512}`,
-      `::end:VectorGuardProxy:${data.transport}`,
+      `copyright: ${data.copyright}`,
+      `::end:vector:guard:proxy:${data.transport}`,
       `::::`,
     ].join('\n').trim();
     
     // send the text data to #feecting to parse and return valid text, html, and data.
-    this.action('question', 'feecting parse'); // action set to feecting parse 
+    this.action('question', `feecting:parse:${transport}`); // action set to feecting parse 
     const feecting = await this.question(`${this.askChr}feecting parse ${text}`); // parse with feecting agent.
     
-    this.state('return', 'proxy'); // set the state to return proxy
+    this.state('return', `proxy:${transport}`); // set the state to return proxy
     return {
       text: feecting.a.text,
       html: feecting.a.html,
@@ -160,27 +164,29 @@ export default {
   copyright:  ©2025 Quinn A Michaels. All rights reserved.
   **/
   async shield(packet) {
-    this.context('shield');
-    this.action('method', 'shield');
+    this.zone('guard'); // set the current zone to guard
+    this.feature('guard'); // set the Guard feature.
+    this.context('shield'); // set context to shield
+    this.action('method', 'shield'); // action set to shield
     const uid = this.lib.uid(true);
     const transport = packet.id;
-    const client = this.client();
+
+    const guard = this.guard();
     const agent = this.agent();
+    const client = this.client();
+    const {profile} = client;
     
     const {meta} = packet.q;
     const {params} = meta;
     const opts = this.lib.copy(params);
     const cmd = opts.shift();
-    const type = opts.shit();
     
-    const signer = !type || type === 'agent' ? agent : client;
-    const {profile} = signer;
         
-    const timestamp = Date.now();
-    const created = this.lib.formatDate(timestamp, 'long', true);
+    const time = Date.now();
+    const created = this.lib.formatDate(time, 'long', true);
     const message = packet.q.text || '';
   
-    const {computer, hardware, provision, ssn, name, fullname, network, caseid, religion, token, warning, copyright} = profile;
+    const {computer, hardware, provision, ssn, name, title, fullname, network, caseid, religion, token, warning, copyright} = profile;
     
     const companies = profile.companies.map(val => {
       return val.name;
@@ -189,11 +195,14 @@ export default {
     const data = {
       uid,
       transport,
-      opts: opts.length? `.${opts.join('.')}` : '',
-      client: client.profile,
+      opts: opts.length? `:${opts.join(':')}` : '',
       agent: agent.profile,
+      client: client.profile,
       name,
       fullname,
+      title,
+      religion,
+      companies,
       ssn,
       computer,
       hardware,
@@ -201,13 +210,11 @@ export default {
       network,
       caseid,
       message,
-      religion,
-      companies,
-      created,
-      timestamp,
       token,
       warning,
       copyright,
+      time,
+      created,
     };
     data.md5 = this.lib.hash(data, 'md5');
     data.sha256 = this.lib.hash(data, 'sha256');
@@ -215,29 +222,25 @@ export default {
     
     const text = [
       `::::`,
-      `WRITE AUTHORIZED OFFICIAL SECURE VectorGuardShield ${data.opts}? write ${data.message}`,
-      `::begin:VectorGuardShield:${data.transport}`,
+      `WRITE AUTHORIZED OFFICIAL SECURE VectorGuardShield${data.opts}? write ${data.message}`,
+      `::begin:vector:guard:shield:${data.transport}`,
       `transport: ${data.transport}`,
-      `caseid: ${data.caseid}`,
       `agent: ${agent.profile.id}`,
       `client: ${client.profile.id}`,
       `name: ${data.name}`,
       `fullname: ${data.fullname}`,
-      `religion: ${data.religion}`,
-      `computer: ${data.computer}`,
-      `hardware: ${data.hardware}`,
-      `provision: ${data.provision}`,
-      `network: ${data.network}`,
+      `title: ${data.title}`
       `companies: ${data.companies}`,
       `warning: ${data.warning}`,
-      `timestamp: ${data.timestamp}`,
       `ssn: ${data.ssn}`,
-      `copyright: ${data.copyright}`,
+      `case: ${data.caseid}`,
+      `time: ${data.timestamp}`,
       `created: ${data.created}`,
       `md5: ${data.md5}`,
       `sha256: ${data.sha256}`,
       `sha512: ${data.sha512}`,
-      `::end:VectorGuardShield:${data.transport}`,
+      `copyright: ${data.copyright}`,
+      `::end:vector:guard:shield:${data.transport}`,
       `::::`,
     ].join('\n').trim();
     const feecting = await this.question(`${this.askChr}feecting parse ${text}`);
@@ -272,7 +275,7 @@ export default {
     const data = {
       uid,
       transport,
-      opts: opts.length? `.${opts.join('.')}` : '',
+      opts: opts.length? `:${opts.join(':')}` : '',
       client: client.profile,
       agent: agent.profile,
       name,
@@ -293,9 +296,8 @@ export default {
     data.sha512 = this.lib.hash(data, 'sha512');
     
     const text = [
-      `uid: ${data.uid}`,
+      `WRITE AUTHORIZED OFFICIAL SECURE VectorGuardProxy${data.opts}? if yes then write ${data.message}`,
       `::begin:VectorGuardWall:${data.transport}`,
-      `write official authorized VectorGuardWall${data.opts}? write ${data.message}`,
       `transport: ${data.transport}`,
       `caseid: ${data.caseid}`,
       `agent: ${agent.profile.id}`,
