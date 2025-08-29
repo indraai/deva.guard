@@ -234,7 +234,8 @@ export default {
     this.state('set', `writestr:${transport}`);
     const write = `OM:${client.profile.write.split(' ').join(':').toUpperCase()}:SHIELD`;
     
-    this.state('hash')
+    this.state('hash', `profile:${transport}`);
+    const profile = this.lib.hash(client.profile, 'sha256');
     this.state('set', `data:${transport}`); // set the state to set data 
     // data packet
     const data = {
