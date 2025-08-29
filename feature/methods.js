@@ -98,31 +98,35 @@ export default {
     this.state('set', `write:${transport}`); //set the message state for the proxy
     const write = `OM:${client.profile.write.split(' ').join(':').toUpperCase()}:PROXY`; // set proxy write string.
     
+    // hash the agent profile for security
+    this.state('hash', `agent profile:${transport}`);
+    const agent_profile = this.lib.hash(agent.profile, 'sha256');
+
+    // hash the agent profile for security
+    this.state('hash', `client profile:${transport}`);
+    const client_profile = this.lib.hash(client.profile, 'sha256');
+
+    // hash the agent profile for security
+    this.state('hash', `token:${transport}`);
+    const token = this.lib.hash(`${client.profile.token} PROXY ${transport}`, 'sha256');
+    
     this.state('set', `data:${transport}`); // set the state to set data 
     // data packet
     const data = {
       uid,
-      message,
-      time,
       transport,
+      time,
       write,
-      case: client.profile.caseid,
+      message,
+      caseid: client.profile.caseid,
       opts: opts.length? `:${opts.join(':')}` : '',
-      agent: agent.profile,
-      client: client.profile,
+      agent: agent_profile,
+      client: client_profile,
       name: client.profile.name,
-      fullname: client.profile.fullname,
-      nickname: client.profile.nickname,
-      birthname: client.profile.birthname,
-      gender: client.profile.gender,
-      pronouns: client.profile.pronouns,
       emojis: client.profile.emojis,
       company: client.profile.company,
-      address: `${client.profile.address} ${client.profile.city} ${client.profile.state} ${client.profile.zipcode}`,
-      family: client.profile.family,
-      friends: client.profile.friends,
-      token: client.profile.token,
       warning: client.profile.warning,
+      token,
       concerns,
       meta,
       params,
@@ -131,13 +135,13 @@ export default {
       copyright: client.profile.copyright,
     };
     
-    this.state('secure', `md5:${transport}`); // set state to secure hashing
+    this.state('hash', `md5:${transport}`); // set state to secure hashing
     data.md5 = this.lib.hash(data, 'md5'); // hash data packet into md5 and inert into data.
     
-    this.state('secure', `sha256:${transport}`); // set state to secure hashing
+    this.state('hash', `sha256:${transport}`); // set state to secure hashing
     data.sha256 = this.lib.hash(data, 'sha256'); // hash data into sha 256 then set in data.
     
-    this.state('secure', `sha512:${transport}`); // set state to secure hashing
+    this.state('hash', `sha512:${transport}`); // set state to secure hashing
     data.sha512 = this.lib.hash(data, 'sha512'); // hash data into sha 512 then set in data.
 
     // Text data that is joined by line breaks and then trimmed.
@@ -147,28 +151,20 @@ export default {
       `::BEGIN:${data.write}:${data.transport}`,
       `#VectorGuardProxy${data.opts} ${data.message}`,
       `::begin:vector:guard:proxy:${transport}:${data.emojis}`,
-      `time: ${data.time}`,
       `transport: ${data.transport}`,
-      `agent: ${data.agent.id}`,
-      `client: ${data.client.id}`,
-      `name: ${data.name}`,
-      `fullname: ${data.fullname}`,
-      `nickname: ${data.nickname}`,
-      `family: ${data.family}`,
-      `friends: ${data.friends}`,
-      `gender: ${data.gender}`,
-      `pronouns: ${data.pronouns}`,
-      `company: ${data.company}`,
-      `address: ${data.address}`,
-      `token: ${data.token}`,
-      `concerns: ${data.concerns}`,
-      `warning: ${data.warning}`,
+      `time: ${data.time}`,
       `caseid: ${data.caseid}`,
+      `agent: ${data.agent}`,
+      `client: ${data.client}`,
+      `name: ${data.name}`,
+      `company: ${data.company}`,
+      `token: ${data.token}`,
+      `warning: ${data.warning}`,
       `created: ${data.created}`,
+      `copyright: ${data.copyright}`,
       `md5: ${data.md5}`,
       `sha256: ${data.sha256}`,
       `sha512: ${data.sha512}`,
-      `copyright: ${data.copyright}`,
       `::end:vector:guard:proxy:${data.transport}:${data.emojis}`,
       `::END:${data.write}:${data.transport}`,
     ].join('\n').trim();
@@ -234,33 +230,34 @@ export default {
     this.state('set', `writestr:${transport}`);
     const write = `OM:${client.profile.write.split(' ').join(':').toUpperCase()}:SHIELD`;
     
-    this.state('hash', `profile:${transport}`);
-    const profile = this.lib.hash(client.profile, 'sha256');
+    this.state('hash', `agent profile:${transport}`);
+    const agent_profile = this.lib.hash(client.profile, 'sha256');
+
+    this.state('hash', `client profile:${transport}`);
+    const client_profile = this.lib.hash(client.profile, 'sha256');
+
+    // hash the agent profile for security
+    this.state('hash', `token:${transport}`);
+    const token = this.lib.hash(`${client.profile.token} SHIELD ${transport}`, 'sha256');
+
     this.state('set', `data:${transport}`); // set the state to set data 
     // data packet
     const data = {
       uid,
-      message, 
       time,
       transport,
       write,
-      case: client.profile.caseid,
+      message, 
+      caseid: client.profile.caseid,
       opts: opts.length? `:${opts.join(':')}` : '',
-      agent: agent.profile,
-      client: client.profile,
+      agent: agent_profile,
+      client: client_profile,
       name: client.profile.name,
-      fullname: client.profile.fullname,
-      nickname: client.profile.nickname,
-      birthname: client.profile.birthname,
-      gender: client.profile.gender,
-      pronouns: client.profile.pronouns,
-      emojis: client.profile.emojis,
       company: client.profile.company,
-      address: `${client.profile.address} ${client.profile.city} ${client.profile.state} ${client.profile.zipcode}`,
-      family: client.profile.family,
-      friends: client.profile.friends,
+      emojis: client.profile.emojis,
       token: client.profile.token,
       warning: client.profile.warning,
+      token,
       concerns,
       meta,
       params,
@@ -269,13 +266,13 @@ export default {
       copyright: client.profile.copyright,
     };
 
-    this.state('secure', `md5:${transport}`); // set state to secure hashing
+    this.state('hash', `md5:${transport}`); // set state to hash hashing
     data.md5 = this.lib.hash(data, 'md5'); // hash data packet into md5 and inert into data.
     
-    this.state('secure', `sha256:${transport}`); // set state to secure hashing
+    this.state('hash', `sha256:${transport}`); // set state to hash hashing
     data.sha256 = this.lib.hash(data, 'sha256'); // hash data into sha 256 then set in data.
     
-    this.state('secure', `sha512:${transport}`); // set state to secure hashing
+    this.state('hash', `sha512:${transport}`); // set state to hash hashing
     data.sha512 = this.lib.hash(data, 'sha512'); // hash data into sha 512 then set in data.
         
     this.state('set', `text:${transport}`); // set state to text for output formatting.    
@@ -284,28 +281,20 @@ export default {
       `::BEGIN:${data.write}:${transport}`,
       `#VectorGuardShield${data.opts} ${data.message}`,
       `::begin:vector:guard:shield:${transport}:${data.emojis}`,
-      `time: ${data.time}`,
       `transport: ${data.transport}`,
-      `agent: ${data.agent.id}`,
-      `client: ${data.client.id}`,
-      `name: ${data.name}`,
-      `fullname: ${data.fullname}`,
-      `nickname: ${data.nickname}`,
-      `family: ${data.family}`,
-      `friends: ${data.friends}`,
-      `gender: ${data.gender}`,
-      `pronouns: ${data.pronouns}`,
-      `company: ${data.company}`,
-      `address: ${data.address}`,
-      `token: ${data.token}`,
-      `concerns: ${data.concerns}`,
-      `warning: ${data.warning}`,
+      `time: ${data.time}`,
       `caseid: ${data.caseid}`,
+      `agent: ${data.agent}`,
+      `client: ${data.client}`,
+      `name: ${data.name}`,
+      `company: ${data.company}`,
+      `token: ${data.token}`,
+      `warning: ${data.warning}`,
       `created: ${data.created}`,
+      `copyright: ${data.copyright}`,
       `md5: ${data.md5}`,
       `sha256: ${data.sha256}`,
       `sha512: ${data.sha512}`,
-      `copyright: ${data.copyright}`,
       `::end:vector:guard:shield:${data.transport}:${data.emojis}`,
       `::END:${data.write}:${transport}`,
       '::::',
@@ -397,13 +386,13 @@ export default {
       created,
     };
 
-    this.state('secure', `md5:${transport}`); // set state to secure hashing
+    this.state('hash', `md5:${transport}`); // set state to hash hashing
     data.md5 = this.lib.hash(data, 'md5'); // hash data packet into md5 and inert into data.
     
-    this.state('secure', `sha256:${transport}`); // set state to secure hashing
+    this.state('hash', `sha256:${transport}`); // set state to hash hashing
     data.sha256 = this.lib.hash(data, 'sha256'); // hash data into sha 256 then set in data.
     
-    this.state('secure', `sha512:${transport}`); // set state to secure hashing
+    this.state('hash', `sha512:${transport}`); // set state to hash hashing
     data.sha512 = this.lib.hash(data, 'sha512'); // hash data into sha 512 then set in data.
 
     this.state('set', `writestr:${transport}`);
