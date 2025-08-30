@@ -1,129 +1,75 @@
 export default {
-  /**************
-  method: Guard
-  params: packet
-  describe: The global service feature that installs with every agent
-  ***************/
-  guard(packet) {
-    this.context('feature');
-    return new Promise((resolve, reject) => {
-      const guard = this.guard();
-      const agent = this.agent();
-      const global = [];
-      guard.global.forEach((item,index) => {
-        global.push(`::begin:global:${item.key}:${item.id}`);
-        for (let x in item) {
-          global.push(`${x}: ${item[x]}`);
-        }
-        global.push(`::end:global:${item.key}:${this.lib.hash(item)}`);
-      });
-      const concerns = [];
-      guard.concerns.forEach((item, index) => {
-        concerns.push(`${index + 1}. ${item}`);
-      })
-      
-      const info = [
-        `::BEGIN:GUARD:${packet.id}`,
-        '### Client',
-        `::begin:client:${guard.client_id}`,
-        `id: ${guard.client_id}`,
-        `client: ${guard.client_name}`,
-        '**concerns**',
-        concerns.join('\n'),
-        `::end:client:${this.lib.hash(guard)}`,
-        '### Global',
-        global.join('\n'),
-        `date: ${this.lib.formatDate(Date.now(), 'long', true)}`,
-        `::END:GUARD:${this.lib.hash(packet)}`,
-      ].join('\n');
-      this.question(`${this.askChr}feecting parse ${info}`).then(feecting => {
-        return resolve({
-          text: feecting.a.text,
-          html: feecting.a.html,
-          data: guard.concerns,
-        });
-      }).catch(err => {
-        return this.error(err, packet, reject);
-      })
-    });
-  },
-  
-  
-  /**
-  method: shield
-  params: packet
-  describe: Return authorized VectorGuardShield for requesting client.
-  copyright:  ©2025 Quinn A Michaels. All rights reserved.
-  **/
-  async shield(packet) {
-    this.state('set', `transport:${packet.id}`);
-    const transport = packet.id; // set the transport from packet.id
-
+  async guard(packet) {
+    this.state('set', `guard:transport:${packet.id}`);
+    const transport = packet.id; // set the transport id from the packet id.
+    
     this.zone('guard', transport); // set the current zone to guard
     this.feature('guard', transport); // set the Guard feature.
-    this.context('shield', transport); // set context to shield
-    this.action('method', `shield:${transport}`); // action set to shield
-
+    this.context('guard', transport); // set the agent context to proxy.
+    this.action('method', `proxy:${transport}`); // set the action method to proxy.
+    
     this.state('set', `uid:${transport}`); //set the uid state for the proxy
     const uid = this.lib.uid(true); // The UID for the proxy
     this.state('set', `time:${transport}`); //set the time state for the proxy
     const time = Date.now(); // current timestamp
     this.state('created', `created:${transport}`); //set the uid state for the proxy
     const created = this.lib.formatDate(time, 'long', true); // Formatted created date.
-
+    
     this.state('set', `guard:${transport}`); //set the guard state for the proxy
     const guard = this.guard(); // load the Guard profile
     const {concerns} = guard; // load concerns from client guard profile.
     
-    this.state('set', `agent:${transport}`); //set the agent state for the proxy
+    this.state('set', `guard:agent:${transport}`); //set the agent state for the proxy
     const agent = this.agent(); // the agent processing the proxy
     
-    this.state('set', `client:${transport}`); //set the client state for the proxy
+    this.state('set', `guard:client:${transport}`); //set the client state for the proxy
     const client = this.client(); // the client requesting the proxy
-    const {profile} = client; // set the client profile
     
-    this.state('set', `meta:${transport}`); //set the meta state for the proxy
+    this.state('set', `guard:meta:${transport}`); //set the meta state for the proxy
     const {meta} = packet.q; // set the meta information from the packet question.
+    
+    this.state('set', `guard:params:${transport}`); //set the meta state for the proxy
     const {params} = meta; // set params from the meta information.
     
-    this.state('set', `opts:${transport}`); //set the opts state for the proxy
+    this.state('set', `guard:opts:${transport}`); //set the opts state for the proxy
     const opts = this.lib.copy(params); // copy the params and set as opts.
-
-    this.state('set', `command:${transport}`); //set the opts state for the proxy
+    
+    this.state('set', `guard:command:${transport}`); //set the opts state for the proxy
     const command = opts.shift(); // extract the command first array item out of opts.
     
-    this.state('set', `message:${transport}`); //set the message state for the proxy
+    this.state('set', `guard:message:${transport}`); //set the message state for the proxy
     const message = packet.q.text; // set packet.q.text as the message of the proxy.
-  
-    this.state('set', `writestr:${transport}`);
-    const write = `OM:${client.profile.write.split(' ').join(':').toUpperCase()}:SHIELD`;
     
-    this.state('hash', `agent profile:${transport}`);
-    const agent_profile = this.lib.hash(client.profile, 'sha256');
-
-    this.state('hash', `client profile:${transport}`);
-    const client_profile = this.lib.hash(client.profile, 'sha256');
-
+    this.state('set', `guard:write:${transport}`); //set the message state for the proxy
+    const write = `OM:VECTOR:GUARD:${client.profile.write.split(' ').join(':').toUpperCase()}`; // set proxy write string.
+    
     // hash the agent profile for security
-    this.state('hash', `token:${transport}`);
-    const token = this.lib.hash(`${client.profile.token} SHIELD ${transport}`, 'sha256');
-
-    this.state('set', `data:${transport}`); // set the state to set data 
+    this.state('hash', `guard:agent:hash:${transport}`);
+    const agent_hash = this.lib.hash(agent, 'sha256');
+    
+    // hash the agent profile for security
+    this.state('hash', `guard:client:hash:${transport}`);
+    const client_hash = this.lib.hash(client, 'sha256');
+    
+    // hash the agent profile for security
+    this.state('hash', `guard:token:${transport}`);
+    const token = this.lib.hash(`GUARD ${client.profile.token} ${transport}`, 'sha256');
+    
+    this.state('set', `guard:data:${transport}`); // set the state to set data 
     // data packet
     const data = {
       uid,
-      time,
       transport,
+      time,
       write,
-      message, 
+      message,
       caseid: client.profile.caseid,
       opts: opts.length? `:${opts.join(':')}` : '',
-      agent: agent_profile,
-      client: client_profile,
+      agent: agent_hash,
+      client: client_hash,
       name: client.profile.name,
-      company: client.profile.company,
       emojis: client.profile.emojis,
-      token: client.profile.token,
+      company: client.profile.company,
       warning: client.profile.warning,
       token,
       concerns,
@@ -133,46 +79,46 @@ export default {
       created,
       copyright: client.profile.copyright,
     };
-
-    this.state('hash', `md5:${transport}`); // set state to hash hashing
+    
+    this.state('hash', `guard:md5:${transport}`); // set state to secure hashing
     data.md5 = this.lib.hash(data, 'md5'); // hash data packet into md5 and inert into data.
     
-    this.state('hash', `sha256:${transport}`); // set state to hash hashing
+    this.state('hash', `guard:sha256:${transport}`); // set state to secure hashing
     data.sha256 = this.lib.hash(data, 'sha256'); // hash data into sha 256 then set in data.
     
-    this.state('hash', `sha512:${transport}`); // set state to hash hashing
+    this.state('hash', `guard:sha512:${transport}`); // set state to secure hashing
     data.sha512 = this.lib.hash(data, 'sha512'); // hash data into sha 512 then set in data.
-        
-    this.state('set', `text:${transport}`); // set state to text for output formatting.    
+    
+    // Text data that is joined by line breaks and then trimmed.
+    this.state('set', `guard:text:${transport}`); // set state to text for output formatting.
     const text = [
-      '::::',
-      `::BEGIN:${data.write}:${transport}`,
-      `#VectorGuardShield${data.opts} ${data.message}`,
-      `::begin:vector:guard:shield:${transport}:${data.emojis}`,
+      `:::`,
+      `::BEGIN:${data.write}:${data.transport}`,
+      `#VectorGuard${data.opts} ${data.message}`,
+      `::begin:vector:guard:${transport}:${data.emojis}`,
       `transport: ${data.transport}`,
       `time: ${data.time}`,
       `caseid: ${data.caseid}`,
       `agent: ${data.agent}`,
       `client: ${data.client}`,
+      `token: ${data.token}`,
       `name: ${data.name}`,
       `company: ${data.company}`,
-      `token: ${data.token}`,
       `warning: ${data.warning}`,
       `created: ${data.created}`,
       `copyright: ${data.copyright}`,
       `md5: ${data.md5}`,
       `sha256: ${data.sha256}`,
       `sha512: ${data.sha512}`,
-      `::end:vector:guard:shield:${data.transport}:${data.emojis}`,
-      `::END:${data.write}:${transport}`,
-      '::::',
+      `::end:vector:guard:${data.transport}:${data.emojis}`,
+      `::END:${data.write}:${data.transport}`,
     ].join('\n').trim();
     
     // send the text data to #feecting to parse and return valid text, html, and data.
-    this.action('question', `feecting:parse:${transport}`); // action set to feecting parse     
-    const feecting = await this.question(`${this.askChr}feecting parse:${transport} ${text}`);
+    this.action('question', `guard:feecting:parse:${transport}`); // action set to feecting parse 
+    const feecting = await this.question(`${this.askChr}feecting parse:${transport} ${text}`); // parse with feecting agent.
     
-    this.state('return', `shield:${transport}`); // set the state to return proxy
+    this.state('return', `guard:${transport}`); // set the state to return proxy
     return {
       text: feecting.a.text,
       html: feecting.a.html,
