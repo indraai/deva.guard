@@ -34,10 +34,10 @@ const GUARD = new Deva({
   },
   listeners: {
     'devacore:question'(packet) {
-      const echo = this.methods.echo('guard', 'question', packet.q);
+      const echo = this.methods.echo('guard', 'q', packet);
     },
     'devacore:answer'(packet) {
-      const echo = this.methods.echo('guard', 'answer', packet.a);
+      const echo = this.methods.echo('guard', 'a', packet);
     }
   },
   modules: {},
