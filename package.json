@@ -1,10 +1,24 @@
 {
-  "id": 6159528221394,
+  "id": 18681247603251271887,
   "name": "@indra.ai/deva.guard",
   "version": "0.0.47",
-  "author": "Quinn Michaels",
-  "license": "MIT",
-  "copyright": "2025",
+  "license": "VLA:36745219642172713880 LICENSE.md",
+  "author": {
+    "name": "Quinn A Michaels",
+    "email": "quinn@indra.ai",
+    "url": "https://indra.ai/"
+  },
+  "funding": [
+    {
+      "type": "paypal",
+      "url": "https://paypal.me/rahulaclub"
+    },
+    {
+      "type": "patreon",
+      "url": "https://patreon.com/rahulaclub"
+    }
+  ],
+  "copyright": "(c)Copyright 2025, Quinn A Michaels; All Rights Reserved.",
   "description": "The Guard Deva manages Guard ensuring Quinn Michaels and his intellectual property is managed guarded.",
   "main": "index.js",
   "type": "module",
@@ -31,7 +45,7 @@
   },
   "data": {
     "agent": {
-      "id": 6159528221394,
+      "id": 15474117798226259465,
       "key": "guard",
       "prompt": {
         "emoji": "💂",
