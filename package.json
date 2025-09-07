@@ -1,7 +1,7 @@
 {
-  "id": 18681247603251271887,
+  "id": 18681247603251274000,
   "name": "@indra.ai/deva.guard",
-  "version": "0.0.47",
+  "version": "0.0.48",
   "license": "VLA:36745219642172713880 LICENSE.md",
   "author": {
     "name": "Quinn A Michaels",
@@ -45,7 +45,7 @@
   },
   "data": {
     "agent": {
-      "id": 15474117798226259465,
+      "id": 15474117798226260000,
       "key": "guard",
       "prompt": {
         "emoji": "💂",
