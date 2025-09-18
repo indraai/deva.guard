@@ -1,10 +1,25 @@
 {
-  "id": 18681247603251274000,
+  "id": "51699275776036264337",
   "name": "@indra.ai/deva.guard",
   "version": "0.0.89",
-  "license": "VLA:36745219642172713880 LICENSE.md",
+  "license": "VLA:51699275776036264337 LICENSE.md",
+  "VLA": {
+    "uid": "51699275776036264337",
+    "time": 1758158169420,
+    "date": "Wednesday, September 17, 2025 - 6:16:09 PM",
+    "client": "qFtdNthYheJfw008riYVQPa94a+0Gm8+ynhLCIC4A2s=",
+    "agent": "WBoqNRIUWO8u6BD7lm3e/TrBSm5BTx8SHW2BBVzWYNY=",
+    "pkg": "otM4bRTKa2EQMq/hCrkaftg3GhIa3sRFdjI3/Clg1DI=",
+    "machine": "1EzbSrFKcrdpnZbj4bpCphdpI8mINIOKjMUrbkWjACM=",
+    "warning": "⚠️ Unlawful use signals volunatary consent to forfeit all assets, wealth, property, holdings, companies, and cryptocurrency to the Internal Revenue Service (IRS) for lawful taxation, investigation, and restitution to the rightful legal owner Quinn A Michaels.",
+    "copyright": "©2025 Quinn A Michaels; All rights reserved.",
+    "md5": "oWxY29+jc9cJ58nF9++8BQ==",
+    "sha256": "ORjzKWnjleZUpsPAae2Uq9SBvk9xVAm4GP+bBwFUW48=",
+    "sha512": "8v35dbyZ6YjZ3ZfpCu3MkOjQSgoyuzUthDY71EMIG9d9eLD3eVoRxRqGWcDsaUqD4QlClzXNgZ4qCp0rB8FGLQ=="
+  },
   "author": {
     "name": "Quinn A Michaels",
+    "company": "Inside The Net, Inc.",
     "email": "quinn@indra.ai",
     "url": "https://indra.ai/"
   },
@@ -18,7 +33,7 @@
       "url": "https://patreon.com/rahulaclub"
     }
   ],
-  "copyright": "(c)Copyright 2025, Quinn A Michaels; All Rights Reserved.",
+  "copyright": "©2025 Quinn A Michaels; All rights reserved.",
   "description": "The Guard Deva manages Guard ensuring Quinn Michaels and his intellectual property is managed guarded.",
   "main": "index.js",
   "type": "module",
@@ -93,7 +108,7 @@
         "init": "🟠 INIT",
         "start": "🔵 START",
         "enter": "🟢 ENTER",
-        "ready": "🫡 Ready for Guard Duty.",
+        "ready": "🫡 Ready for Guard Duty",
         "stop": "🔴 STOP",
         "exit": "🟡 EXIT",
         "done": "🟣 DONE",
