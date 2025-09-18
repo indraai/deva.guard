@@ -40,10 +40,10 @@ const GUARD = new Deva({
   },
   listeners: {
     'devacore:question'(packet) {
-      const echo = this.methods.echo('guard', 'q', packet);
+      this.methods.echo(agent.key, 'q', packet);
     },
     'devacore:answer'(packet) {
-      const echo = this.methods.echo('guard', 'a', packet);
+      this.methods.echo(agent.key, 'a', packet);
     }
   },
   modules: {},
@@ -66,6 +66,6 @@ const GUARD = new Deva({
     this.prompt(this.vars.messages.error);
     console.log(err);
     return reject(err);
-  }
+  },
 });
 export default GUARD
