@@ -33,7 +33,7 @@
       "url": "https://patreon.com/rahulaclub"
     }
   ],
-  "copyright": "©2025 Quinn A Michaels; All rights reserved.",
+  "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
   "description": "The Guard Deva manages Guard ensuring Quinn Michaels and his intellectual property is managed guarded.",
   "main": "index.js",
   "type": "module",
@@ -60,7 +60,7 @@
   },
   "data": {
     "agent": {
-      "id": 15474117798226260000,
+      "id": "15474117798226260000",
       "key": "guard",
       "prompt": {
         "emoji": "💂",
@@ -79,6 +79,7 @@
         }
       },
       "profile": {
+        "id": "36098846566273882959",
         "name": "Guard Deva",
         "hashtag": "#GuardDeva",
         "title": "Guard Deva",
@@ -94,12 +95,13 @@
         "layout": "default",
         "color": "rgb(255,145,79)",
         "bgcolor": "rgb(0,0,0)",
-        "emoji": "/assets/devas/guard/emoji.png",
-        "avatar": "/assets/devas/guard/avatar.png",
-        "image": "/assets/devas/guard/background.png",
-        "background": "/assets/devas/guard/background.png",
+        "emoji": "/assets/emoji.png",
+        "avatar": "/assets/avatar.png",
+        "image": "/assets/background.png",
+        "background": "/assets/background.png",
         "owner": "Quinn Michaels",
         "creator": "Quinn Michaels",
+        "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
         "created": "February 7, 2025 at 8:02 PM"
       }
     },
@@ -108,7 +110,7 @@
         "init": "🟠 INIT",
         "start": "🔵 START",
         "enter": "🟢 ENTER",
-        "ready": "Ready for Guard Duty",
+        "ready": "✅ Guard Ready",
         "stop": "🔴 STOP",
         "exit": "🟡 EXIT",
         "done": "🟣 DONE",
