@@ -64,7 +64,7 @@
       "key": "guard",
       "prompt": {
         "emoji": "💂",
-        "text": "Guard",
+        "text": "#guard",
         "colors": {
           "label": {
             "R": 255,
