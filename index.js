@@ -38,14 +38,7 @@ const GUARD = new Deva({
     parse(input) {return input.trim();},
     process(input) {return input.trim();},
   },
-  listeners: {
-    'devacore:question'(packet) {
-      this.methods.echo(agent.key, 'q', packet);
-    },
-    'devacore:answer'(packet) {
-      this.methods.echo(agent.key, 'a', packet);
-    }
-  },
+  listeners: {},
   modules: {},
   deva: {},
   func: {},
@@ -55,11 +48,13 @@ const GUARD = new Deva({
     const agent_license = this.info().VLA; // get agent license
     const license_check = this.license_check(personal, agent_license); // check license
     // return this.start if license_check passes otherwise stop.
+    this.action('return', `onInit:${data.id.uid}`);
     return license_check ? this.start(data, resolve) : this.stop(data, resolve);
   },
   onReady(data, resolve) {
     const {VLA} = this.info();
     this.prompt(`${this.vars.messages.ready} > VLA:${VLA.uid}`);
+    this.action('resolve', `onReady:${data.id.uid}`);
     return resolve(data);
   },
   onError(err, data, reject) {
