@@ -59,7 +59,7 @@
   },
   "homepage": "https://indra.ai",
   "dependencies": {
-    "@indra.ai/deva": "^1.18.0"
+    "@indra.ai/deva": "^1.19.0"
   },
   "data": {
     "agent": {
@@ -104,7 +104,7 @@
         "background": "/devas/guard/background.png",
         "owner": "Quinn Michaels",
         "creator": "Quinn Michaels",
-        "uid_warning": "Women must be guarded against evil inclinations, however trifling they may appear. If they are not guarded, they will bring sorrow on two families. Knowing their disposition, which the Lord of Creatures laid in them at the creation, to be such, every man should most strenuously exert himself to guard them.",
+        "warning": "Women must be guarded against evil inclinations, however trifling they may appear. If they are not guarded, they will bring sorrow on two families. Knowing their disposition, which the Lord of Creatures laid in them at the creation, to be such, every man should most strenuously exert himself to guard them.",
         "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
         "created": "February 7, 2025 at 8:02 PM"
       }
