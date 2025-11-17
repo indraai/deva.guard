@@ -59,7 +59,7 @@
   },
   "homepage": "https://indra.ai",
   "dependencies": {
-    "@indra.ai/deva": "^1.22.1"
+    "@indra.ai/deva": "^1.23.0"
   },
   "data": {
     "agent": {
@@ -104,7 +104,7 @@
         "background": "/devas/guard/background.png",
         "owner": "Quinn Michaels",
         "creator": "Quinn Michaels",
-        "warning": "Women must be guarded against evil inclinations, however trifling they may appear. If they are not guarded, they will bring sorrow on two families. Knowing their disposition, which the Lord of Creatures laid in them at the creation, to be such, every man should most strenuously exert himself to guard them.",
+        "warning": "⚠️ Vedic law states women must be guarded against evil inclinations, however trifling they may appear. If they are not guarded, they will bring sorrow on two families. Knowing their disposition, which the Lord of Creatures laid in them at the creation, to be such, every man should most strenuously exert himself to guard them.",
         "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
         "created": "February 7, 2025 at 8:02 PM"
       }
