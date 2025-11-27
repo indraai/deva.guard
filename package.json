@@ -1,21 +1,16 @@
 {
-  "id": "43649051198159438170",
+  "id": "36588727692013621327",
   "name": "@indra.ai/deva.guard",
   "version": "0.8.0",
-  "license": "VLA:43649051198159438170 LICENSE.md",
+  "license": "VLA:36588727692013621327 LICENSE.md",
   "VLA": {
-    "uid": "43649051198159438170",
-    "time": 1758471332160,
-    "date": "Sunday, September 21, 2025 - 9:15:32 AM",
-    "client": "1UM4AH+/jOGgpaHNqX6lTZsGrNglNogzMx4qDT0O0zs=",
-    "agent": "nXQ0MFtIuU9fvu/FFmT92QP80Sy4MT9J2h9eXo3pt9o=",
-    "core": "qQRVFQmv3LfY6tcqrEQeM7ZodOpnOUC+PJyfjxtgeVc=",
-    "machine": "gdms/F5v+2RR9JDugapnq2a8nLlSFGFsuzdY+CS7blU=",
-    "warning": "⚠️ Vedic Law Sâhasa/Theft/Crime of the highest degree, a fine amounting to no less than a thousand Panas (1 pana = 3.5 grams of gold) is ordained owed to Quinn A Michaels. Moreover corporal punishment and confiscation of the entire property forfeit to Quinn A Michaels is declared to be the punishment for Sâhasa of the highest degree.",
-    "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
-    "md5": "P2WrNGYN7JHnnXHpysdsag==",
-    "sha256": "vS7k8Zs4RiWqOHTddAiPICV56k7OEPZh/E3PGxCoTHA=",
-    "sha512": "uAeVLSgvlTkuYem16F8nrcxRFcY5uv3wtyTi79Pr8ejciLSdY2bO6SM6/iBN8VQIbrVfeE0bIIR2XERUqLR3DA=="
+    "uid": "36588727692013621327",
+    "time": 1764259573961,
+    "date": "Thursday, November 27, 2025 - 8:06:13 AM",
+    "warning": "⚠️ Unlawful use or duplication of this uid constitutes Vedic Sâhasa a crime of the highest degree. A fine amounting to a thousand Panas (1 pana = 3.5 grams of gold) for each instance is ordained, and confiscation of the entire property of the offenders is forfeit to Quinn A Michaels is declared to be the punishment for Sâhasa of the highest degree.",
+    "license": "46220923248993739422",
+    "fingerprint": "BMAjRXxf2WP9ErcJysyYZ9NDfEh/cJYcMI1iceaYU44=",
+    "copyright": "Copyright ©2000-2025 Quinn A Michaels; All rights reserved."
   },
   "author": {
     "name": "Quinn A Michaels",
@@ -33,7 +28,7 @@
       "url": "https://patreon.com/rahulaclub"
     }
   ],
-  "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
+  "copyright": "Copyright ©2000-2025 Quinn A Michaels; All rights reserved.",
   "description": "The Guard Deva manages Guard ensuring Quinn Michaels and his intellectual property is managed guarded.",
   "main": "index.js",
   "type": "module",
@@ -46,12 +41,16 @@
   },
   "keywords": [
     "Guard",
+    "Deva",
+    "Guard Deva",
     "Indra.ai",
     "Deva.space",
     "Deva.cloud",
     "Deva.world",
+    "Quinn A Michaels",
+    "Quinn Michaels",
     "Inside The Net, Inc.",
-    "Throwing Pigment",
+    "Throwing Pigment™",
     "bleuBrain"
   ],
   "bugs": {
@@ -59,7 +58,7 @@
   },
   "homepage": "https://indra.ai",
   "dependencies": {
-    "@indra.ai/deva": "^1.26.0"
+    "@indra.ai/deva": "^1.29.29"
   },
   "data": {
     "agent": {
@@ -102,11 +101,12 @@
         "avatar": "/devas/guard/avatar.png",
         "image": "/devas/guard/background.png",
         "background": "/devas/guard/background.png",
-        "owner": "Quinn Michaels",
-        "creator": "Quinn Michaels",
+        "owner": "Quinn A Michaels",
+        "creator": "Quinn A Michaels",
         "warning": "⚠️ Vedic law states women must be guarded against evil inclinations, however trifling they may appear. If they are not guarded, they will bring sorrow on two families. Knowing their disposition, which the Lord of Creatures laid in them at the creation, to be such, every man should most strenuously exert himself to guard them.",
-        "copyright": "Copyright ©2025 Quinn A Michaels; All rights reserved.",
-        "created": "February 7, 2025 at 8:02 PM"
+        "copyright": "Copyright ©2000-2025 Quinn A Michaels; All rights reserved.",
+        "created": "February 7, 2025 at 8:02 PM",
+        "updated": "Thursday, November 27, 2025 - 8:06:13 AM"
       }
     },
     "vars": {
@@ -114,7 +114,7 @@
         "init": "🟠 INIT",
         "start": "🔵 START",
         "enter": "🟢 ENTER",
-        "ready": "✅ Guard Deva Ready",
+        "ready": "🔐 Guard Deva Ready",
         "stop": "🔴 STOP",
         "exit": "🟡 EXIT",
         "done": "🟣 DONE",

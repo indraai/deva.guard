@@ -2,7 +2,7 @@
 // Copyright ©2025 Quinn A Michaels; All rights reserved. 
 // Legal Signature Required For Lawful Use.
 // Distributed under VLA:43649051198159438170 LICENSE.md
-
+// Thursday, November 27, 2025 - 8:28:15 AM
 
 // Guard Deva
 import Deva from '@indra.ai/deva';
@@ -29,7 +29,7 @@ const info = {
   copyright: pkg.copyright,
 };
 
-const GUARD = new Deva({
+const GuardDeva = new Deva({
   info,
   agent,
   vars,
@@ -63,4 +63,4 @@ const GUARD = new Deva({
     return reject(err);
   },
 });
-export default GUARD
+export default GuardDeva
