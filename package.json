@@ -33,6 +33,7 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
+    "latest": "npm i @indra.ai/deva@latest --save",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -58,7 +59,7 @@
   },
   "homepage": "https://indra.ai",
   "dependencies": {
-    "@indra.ai/deva": "^1.29.31"
+    "@indra.ai/deva": "^1.36.0"
   },
   "data": {
     "agent": {
@@ -88,7 +89,7 @@
         "subtitle": "Guarding the realms with style.",
         "describe": "Guard Deva is responsible for handling guarding and always watching for intruders at gateways, exits, and exchanges.",
         "tweet": "Guard Deva ensures systems are always guarded.",
-        "hashtags": "#QuinnMichaels #InsideTheNet #IndraAI #DevaWorld #GuardDeva #VectorGuardWall",
+        "hashtags": "#QuinnMichaels #InsideTheNet #IndraAI #DevaWorld #GuardDeva #VectorGuardWall.activate",
         "pronouns": "He, Him",
         "gender": "DEVA",
         "style": "Strong silent type who is always watching for intruders.",
@@ -103,10 +104,10 @@
         "background": "/devas/guard/background.png",
         "owner": "Quinn A Michaels",
         "creator": "Quinn A Michaels",
-        "warning": "{{prompt.emoji}} {{profile.hashtag}} states #Women and #Children must be #Guarded against #Evil #Inclinations #Influences #Invaders however #Trifling they may #Appear. {{profile.name}} says if they are not #Guarded they will bring sorrow on #Society. Knowing their disposition to be such #EveryMan should most strenuously exert himself to #Guard #WwomenAndChildren as the #Protection and #Prosperity of #Society depends on it. {{profile.hashtags}}",
-        "copyright": "Copyright ©2000-2025 Quinn A Michaels; All rights reserved.",
+        "warning": "{{prompt.emoji}} {{profile.hashtag}} declares WOMEN and CHILDREN must be GUARDED against EVIL INCLINATIONS, INFLUENCES, and DOERS however TRIFLING they may APPEAR. If THEY are NOT GUARDED they will bring SORROW upom SOCIETY and FUTURE GENERATIONS. KNOWING their DISPOSITION to be such EVERY MAN should most STRENUOUSLY exert HIMSELF to GUARD WWOMEN and CHILDREN as the PROTECTION and PROSPERITY of HUMANITIES FUTURE DEPENDS on IT. \nowner: {{profile.owner}} \ntags: {{profile.hashtags}}",
+        "copyright": "Copyright ©2000-2026 Quinn A Michaels; All rights reserved.",
         "created": "February 7, 2025 at 8:02 PM",
-        "updated": " Friday, November 28, 2025 - 6:37:03 AM"
+        "updated": " Saturday, February 21, 2026 - 6:58:44 PM"
       }
     },
     "vars": {
