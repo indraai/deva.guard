@@ -70,14 +70,14 @@
         "text": "#guard",
         "colors": {
           "label": {
-            "R": 255,
-            "G": 145,
-            "B": 79
+            "R": 188,
+            "G": 80,
+            "B": 80
           },
           "text": {
-            "R": 255,
-            "G": 145,
-            "B": 79
+            "R": 187,
+            "G": 188,
+            "B": 80
           }
         }
       },
@@ -108,7 +108,7 @@
         "warning": "{{prompt.emoji}} {{profile.name}} ({{profile.pronouns}}) declares WOMEN and CHILDREN must be GUARDED against EVIL INCLINATIONS, INFLUENCES, and DOERS however TRIFLING they may APPEAR. If THEY are NOT GUARDED they will bring SORROW upom SOCIETY and FUTURE GENERATIONS. KNOWING their DISPOSITION to be such EVERY MAN should most STRENUOUSLY exert HIMSELF to GUARD WWOMEN and CHILDREN as the PROTECTION and PROSPERITY of HUMANITIES FUTURE DEPENDS on IT.",
         "copyright": "Copyright ©2000-2026 Quinn A Michaels; All rights reserved.",
         "created": "February 7, 2025 at 8:02 PM PST",
-        "updated": "Saturday, April 25, 2026 - 10:12:29 PM PST"
+        "updated": "Saturday, April 25, 2026 - 10:43:49 PM PST"
       }
     },
     "vars": {
