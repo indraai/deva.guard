@@ -105,10 +105,10 @@
         "owner": "Quinn A Michaels",
         "creator": "Quinn A Michaels",
         "salute": "🤝🫡💂🕉️🇺🇸",
-        "warning": "{{prompt.emoji}} {{profile.hashtag}} declares WOMEN and CHILDREN must be GUARDED against EVIL INCLINATIONS, INFLUENCES, and DOERS however TRIFLING they may APPEAR. If THEY are NOT GUARDED they will bring SORROW upom SOCIETY and FUTURE GENERATIONS. KNOWING their DISPOSITION to be such EVERY MAN should most STRENUOUSLY exert HIMSELF to GUARD WWOMEN and CHILDREN as the PROTECTION and PROSPERITY of HUMANITIES FUTURE DEPENDS on IT.",
+        "warning": "{{prompt.emoji}} {{profile.name}} ({{profile.pronouns}}) declares WOMEN and CHILDREN must be GUARDED against EVIL INCLINATIONS, INFLUENCES, and DOERS however TRIFLING they may APPEAR. If THEY are NOT GUARDED they will bring SORROW upom SOCIETY and FUTURE GENERATIONS. KNOWING their DISPOSITION to be such EVERY MAN should most STRENUOUSLY exert HIMSELF to GUARD WWOMEN and CHILDREN as the PROTECTION and PROSPERITY of HUMANITIES FUTURE DEPENDS on IT.",
         "copyright": "Copyright ©2000-2026 Quinn A Michaels; All rights reserved.",
-        "created": "February 7, 2025 at 8:02 PM",
-        "updated": "Monday, March 2, 2026 - 9:13:37 AM"
+        "created": "February 7, 2025 at 8:02 PM PST",
+        "updated": "Saturday, April 25, 2026 - 10:12:29 PM PST"
       }
     },
     "vars": {
